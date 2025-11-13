@@ -25,6 +25,7 @@ let nextProductId = 3;
 // --- Router ---
 const apiRouter = express.Router();
 
+// Route d’accueil de l’API
 apiRouter.get('/', (req, res) => {
   res.json({ message: 'Bienvenue sur l\'API de Mon App Social !' });
 });
@@ -94,7 +95,13 @@ apiRouter.delete('/products/:id', (req, res) => {
     res.status(200).json({ message: 'Produit supprimé' });
 });
 
+// --- Montage du router ---
 app.use('/api', apiRouter);
 
-// Exporter l'application pour Vercel
+// --- Route test à la racine ---
+app.get('/', (req, res) => {
+  res.send('🚀 Mon API est en ligne et fonctionne sur Vercel !');
+});
+
+// --- Export pour Vercel ---
 module.exports = app;
